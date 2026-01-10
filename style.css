@@ -163,3 +163,17 @@ h1 {
         margin-bottom: 30px;
     }
 }
+
+/* Add style for language link */
+.lang-link {
+    margin-right: 15px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.lang-link:hover {
+    border-color: var(--text-color);
+}
