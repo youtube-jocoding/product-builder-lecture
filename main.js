@@ -2,6 +2,26 @@
 document.addEventListener('DOMContentLoaded', () => {
     const numbersContainer = document.getElementById('numbers-container');
     const generateBtn = document.getElementById('generate-btn');
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        themeToggleBtn.textContent = 'Light Mode';
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+            themeToggleBtn.textContent = 'Light Mode';
+        } else {
+            localStorage.setItem('theme', 'light');
+            themeToggleBtn.textContent = 'Dark Mode';
+        }
+    });
 
     generateBtn.addEventListener('click', () => {
         generateNumbers();

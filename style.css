@@ -1,3 +1,22 @@
+:root {
+    --bg-color: #f0f2f5;
+    --container-bg: #ffffff;
+    --text-color: #333;
+    --number-bg: #4a90e2;
+    --btn-bg: #50e3c2;
+    --btn-hover: #48d1b3;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode {
+    --bg-color: #1a1a1a;
+    --container-bg: #2d2d2d;
+    --text-color: #f0f2f5;
+    --number-bg: #61dafb;
+    --btn-bg: #bb86fc;
+    --btn-hover: #9b65de;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+}
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -6,16 +25,42 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f0f2f5;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.theme-switch-wrapper {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#theme-toggle {
+    background: none;
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#theme-toggle:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
 }
 
 .container {
     text-align: center;
     padding: 40px;
     border-radius: 12px;
-    background-color: #ffffff;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    background-color: var(--container-bg);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    transition: transform 0.3s ease, background-color 0.3s;
 }
 
 .container:hover {
@@ -24,7 +69,7 @@ body {
 
 h1 {
     margin-bottom: 30px;
-    color: #333;
+    color: var(--text-color);
     font-size: 2.5rem;
 }
 
@@ -42,11 +87,11 @@ h1 {
     height: 60px;
     margin: 0 8px;
     border-radius: 50%;
-    background-color: #4a90e2;
+    background-color: var(--number-bg);
     color: #ffffff;
     font-size: 1.8rem;
     font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px var(--shadow-color);
     transition: transform 0.3s ease, background-color 0.3s ease;
     animation: pop-in 0.5s ease forwards;
 }
@@ -66,17 +111,17 @@ h1 {
     padding: 15px 30px;
     border: none;
     border-radius: 8px;
-    background-color: #50e3c2;
+    background-color: var(--btn-bg);
     color: #ffffff;
     font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px var(--shadow-color);
 }
 
 #generate-btn:hover {
-    background-color: #48d1b3;
+    background-color: var(--btn-hover);
     transform: translateY(-2px);
 }
 
