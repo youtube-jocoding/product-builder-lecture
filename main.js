@@ -4,18 +4,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleBtn = document.getElementById('theme-toggle');
     const body = document.body;
 
-    const menusKO = [
-        '김치찌개', '된장찌개', '삼겹살', '치킨', '피자', '햄버거', 
-        '초밥', '짜장면', '짬뽕', '탕수육', '떡볶이', '김밥', 
-        '돈까스', '냉면', '파스타', '스테이크', '라멘', '우동',
-        '부대찌개', '갈비탕', '순대국', '제육볶음', '오징어볶음', '보쌈'
-    ];
-
-    const menusEN = [
-        'Kimchi Stew', 'Doenjang Stew', 'Samgyeopsal', 'Fried Chicken', 'Pizza', 'Hamburger', 
-        'Sushi', 'Jajangmyeon', 'Jjamppong', 'Sweet and Sour Pork', 'Tteokbokki', 'Kimbap', 
-        'Pork Cutlet', 'Cold Noodles', 'Pasta', 'Steak', 'Ramen', 'Udon',
-        'Budae Jjigae', 'Galbi-tang', 'Sundae-guk', 'Spicy Stir-fried Pork', 'Stir-fried Squid', 'Bossam'
+    // Menu data with Korean name, English name, and Keyword for image generation
+    const menuData = [
+        { ko: '김치찌개', en: 'Kimchi Stew', keyword: 'Kimchi Stew' },
+        { ko: '된장찌개', en: 'Doenjang Stew', keyword: 'Doenjang Stew' },
+        { ko: '삼겹살', en: 'Samgyeopsal', keyword: 'Korean BBQ Pork Belly' },
+        { ko: '치킨', en: 'Fried Chicken', keyword: 'Korean Fried Chicken' },
+        { ko: '피자', en: 'Pizza', keyword: 'Delicious Pizza' },
+        { ko: '햄버거', en: 'Hamburger', keyword: 'Juicy Hamburger' },
+        { ko: '초밥', en: 'Sushi', keyword: 'Sushi platter' },
+        { ko: '짜장면', en: 'Jajangmyeon', keyword: 'Jajangmyeon noodles' },
+        { ko: '짬뽕', en: 'Jjamppong', keyword: 'Jjamppong spicy noodle soup' },
+        { ko: '탕수육', en: 'Sweet and Sour Pork', keyword: 'Tangbuyuk sweet and sour pork' },
+        { ko: '떡볶이', en: 'Tteokbokki', keyword: 'Tteokbokki spicy rice cakes' },
+        { ko: '김밥', en: 'Kimbap', keyword: 'Kimbap korean roll' },
+        { ko: '돈까스', en: 'Pork Cutlet', keyword: 'Tonkatsu pork cutlet' },
+        { ko: '냉면', en: 'Cold Noodles', keyword: 'Naengmyeon cold noodles' },
+        { ko: '파스타', en: 'Pasta', keyword: 'Creamy Pasta' },
+        { ko: '스테이크', en: 'Steak', keyword: 'Beef Steak' },
+        { ko: '라멘', en: 'Ramen', keyword: 'Japanese Ramen' },
+        { ko: '우동', en: 'Udon', keyword: 'Udon noodle soup' },
+        { ko: '부대찌개', en: 'Budae Jjigae', keyword: 'Budae Jjigae army stew' },
+        { ko: '갈비탕', en: 'Galbi-tang', keyword: 'Galbi-tang beef rib soup' },
+        { ko: '순대국', en: 'Sundae-guk', keyword: 'Korean blood sausage soup' },
+        { ko: '제육볶음', en: 'Spicy Stir-fried Pork', keyword: 'Jeyuk Bokkeum spicy pork' },
+        { ko: '오징어볶음', en: 'Stir-fried Squid', keyword: 'Ojing-eo Bokkeum spicy squid' },
+        { ko: '보쌈', en: 'Bossam', keyword: 'Bossam boiled pork' }
     ];
 
     // Check for saved theme preference
@@ -42,27 +56,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function generateMenu() {
         resultContainer.innerHTML = '';
-        
         const lang = document.documentElement.lang;
-        const menus = lang === 'ko' ? menusKO : menusEN;
-
+        
         // Randomly select one menu
-        const randomIndex = Math.floor(Math.random() * menus.length);
-        const selectedMenu = menus[randomIndex];
+        const randomIndex = Math.floor(Math.random() * menuData.length);
+        const selectedData = menuData[randomIndex];
+        const menuName = lang === 'ko' ? selectedData.ko : selectedData.en;
 
+        // Create Menu Text Element
         const menuEl = document.createElement('div');
         menuEl.classList.add('menu-item');
-        menuEl.textContent = selectedMenu;
-        
+        menuEl.textContent = menuName;
         resultContainer.appendChild(menuEl);
 
-        // Display image if pizza is selected
-        if (selectedMenu === '피자' || selectedMenu === 'Pizza') {
-            const imgEl = document.createElement('img');
-            imgEl.src = 'pizza-5275191_1280.jpg';
-            imgEl.alt = 'Pizza';
-            imgEl.classList.add('menu-image');
-            resultContainer.appendChild(imgEl);
-        }
+        // Generate AI Image URL (using pollination.ai)
+        // seed ensures different images, width/height for optimization
+        const seed = Math.floor(Math.random() * 1000); 
+        const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(selectedData.keyword)} delicious food photography?width=512&height=512&seed=${seed}&nologo=true`;
+
+        // Create Image Element
+        const imgEl = document.createElement('img');
+        imgEl.src = imageUrl;
+        imgEl.alt = menuName;
+        imgEl.classList.add('menu-image');
+        
+        // Add loading state or placeholder could be good, but keeping it simple
+        resultContainer.appendChild(imgEl);
     }
 });
