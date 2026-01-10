@@ -73,27 +73,28 @@ h1 {
     font-size: 2.5rem;
 }
 
-.numbers-container {
+.result-container {
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
+    min-height: 80px; /* Reserve space */
+    align-items: center;
 }
 
-.number {
+.menu-item {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60px;
-    height: 60px;
-    margin: 0 8px;
-    border-radius: 50%;
+    padding: 15px 40px;
+    border-radius: 50px; /* Pill shape */
     background-color: var(--number-bg);
     color: #ffffff;
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: bold;
     box-shadow: 0 4px 10px var(--shadow-color);
     transition: transform 0.3s ease, background-color 0.3s ease;
     animation: pop-in 0.5s ease forwards;
+    white-space: nowrap;
 }
 
 @keyframes pop-in {

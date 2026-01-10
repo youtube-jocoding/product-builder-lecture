@@ -1,9 +1,15 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-    const numbersContainer = document.getElementById('numbers-container');
+    const resultContainer = document.getElementById('result-container');
     const generateBtn = document.getElementById('generate-btn');
     const themeToggleBtn = document.getElementById('theme-toggle');
     const body = document.body;
+
+    const menus = [
+        '김치찌개', '된장찌개', '삼겹살', '치킨', '피자', '햄버거', 
+        '초밥', '짜장면', '짬뽕', '탕수육', '떡볶이', '김밥', 
+        '돈까스', '냉면', '파스타', '스테이크', '라멘', '우동',
+        '부대찌개', '갈비탕', '순대국', '제육볶음', '오징어볶음', '보쌈'
+    ];
 
     // Check for saved theme preference
     const savedTheme = localStorage.getItem('theme');
@@ -24,27 +30,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     generateBtn.addEventListener('click', () => {
-        generateNumbers();
+        generateMenu();
     });
 
-    function generateNumbers() {
-        numbersContainer.innerHTML = '';
-        const numbers = new Set();
-        while (numbers.size < 6) {
-            const randomNumber = Math.floor(Math.random() * 45) + 1;
-            numbers.add(randomNumber);
-        }
+    function generateMenu() {
+        resultContainer.innerHTML = '';
+        
+        // Randomly select one menu
+        const randomIndex = Math.floor(Math.random() * menus.length);
+        const selectedMenu = menus[randomIndex];
 
-        const sortedNumbers = Array.from(numbers).sort((a, b) => a - b);
-
-        sortedNumbers.forEach((number, index) => {
-            setTimeout(() => {
-                const numberEl = document.createElement('div');
-                numberEl.classList.add('number');
-                numberEl.textContent = number;
-                numberEl.style.animationDelay = `${index * 100}ms`;
-                numbersContainer.appendChild(numberEl);
-            }, index * 100);
-        });
+        const menuEl = document.createElement('div');
+        menuEl.classList.add('menu-item');
+        menuEl.textContent = selectedMenu;
+        
+        resultContainer.appendChild(menuEl);
     }
 });
