@@ -55,5 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
         menuEl.textContent = selectedMenu;
         
         resultContainer.appendChild(menuEl);
+
+        // Display image if pizza is selected
+        if (selectedMenu === '피자' || selectedMenu === 'Pizza') {
+            const imgEl = document.createElement('img');
+            imgEl.src = 'pizza-5275191_1280.jpg';
+            imgEl.alt = 'Pizza';
+            imgEl.classList.add('menu-image');
+            resultContainer.appendChild(imgEl);
+        }
     }
 });

@@ -75,10 +75,11 @@ h1 {
 
 .result-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin-bottom: 40px;
     min-height: 80px; /* Reserve space */
-    align-items: center;
 }
 
 .menu-item {
@@ -95,6 +96,15 @@ h1 {
     transition: transform 0.3s ease, background-color 0.3s ease;
     animation: pop-in 0.5s ease forwards;
     white-space: nowrap;
+    margin-bottom: 20px;
+}
+
+.menu-image {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    animation: pop-in 0.5s ease forwards;
 }
 
 @keyframes pop-in {
