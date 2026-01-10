@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동물상 테스트 - 나는 강아지상? 고양이상?</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <style>
+        .test-description {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        #webcam-container {
+            margin: 20px auto;
+            border-radius: 50%;
+            overflow: hidden;
+            width: 250px;
+            height: 250px;
+            border: 4px solid var(--btn-bg);
+            box-shadow: 0 8px 20px var(--shadow-color);
+        }
+
+        #webcam-container canvas {
+            width: 250px !important;
+            height: 250px !important;
+            object-fit: cover;
+        }
+
+        .result-box {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--btn-bg), var(--number-bg));
+            color: white;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+            animation: pop-in 0.5s ease forwards;
+        }
+
+        .result-type {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .result-emoji {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+
+        .result-percentage {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            opacity: 0.95;
+        }
+
+        .result-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .progress-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .progress-item {
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100px;
+            height: 12px;
+            background-color: rgba(255,255,255,0.3);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-fill.dog {
+            background-color: #FFD700;
+        }
+
+        .progress-fill.cat {
+            background-color: #FF69B4;
+        }
+
+        #start-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--btn-bg);
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px var(--shadow-color);
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        #start-btn:hover {
+            background-color: var(--btn-hover);
+            transform: translateY(-2px);
+        }
+
+        #start-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-switch-wrapper">
+        <button id="theme-toggle">Dark Mode</button>
+    </div>
+    <div class="container">
+        <h1>동물상 테스트</h1>
+        <p class="test-description">카메라를 통해 당신의 동물상을 확인해보세요!</p>
+
+        <div id="webcam-container"></div>
+
+        <button id="start-btn" onclick="init()">테스트 시작하기</button>
+
+        <p class="loading" id="loading">카메라 연결 중...</p>
+
+        <div class="result-box" id="result-box">
+            <div class="result-emoji" id="result-emoji"></div>
+            <div class="result-type" id="result-type"></div>
+            <div class="result-percentage" id="result-percentage"></div>
+            <div class="result-description" id="result-description"></div>
+            <div class="progress-container">
+                <div class="progress-item">
+                    <span>강아지</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill dog" id="dog-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="progress-item">
+                    <span>고양이</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill cat" id="cat-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link">← 메인으로 돌아가기</a>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        if (localStorage.getItem('dark-mode') === 'true') {
+            body.classList.add('dark-mode');
+            themeToggle.textContent = 'Light Mode';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.textContent = 'Light Mode';
+                localStorage.setItem('dark-mode', 'true');
+            } else {
+                themeToggle.textContent = 'Dark Mode';
+                localStorage.setItem('dark-mode', 'false');
+            }
+        });
+
+        // Teachable Machine Model
+        const URL = "https://teachablemachine.withgoogle.com/models/tkRQQzG-1/";
+        let model, webcam, maxPredictions;
+
+        const descriptions = {
+            dog: {
+                emoji: "🐶",
+                name: "강아지상",
+                text: "당신은 친근하고 활발한 강아지상입니다! 사람들과 어울리는 것을 좋아하고, 밝고 긍정적인 에너지를 가지고 있어요. 충성심이 강하고 누구에게나 다정하게 다가가는 매력이 있습니다."
+            },
+            cat: {
+                emoji: "🐱",
+                name: "고양이상",
+                text: "당신은 도도하고 매력적인 고양이상입니다! 독립적이면서도 신비로운 분위기를 풍기며, 자신만의 확고한 취향이 있어요. 가까운 사람들에게는 깊은 애정을 보여주는 매력이 있습니다."
+            }
+        };
+
+        async function init() {
+            const startBtn = document.getElementById('start-btn');
+            const loading = document.getElementById('loading');
+
+            startBtn.disabled = true;
+            startBtn.textContent = '로딩 중...';
+            loading.classList.add('show');
+
+            try {
+                const modelURL = URL + "model.json";
+                const metadataURL = URL + "metadata.json";
+
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalClasses();
+
+                const flip = true;
+                webcam = new tmImage.Webcam(250, 250, flip);
+                await webcam.setup();
+                await webcam.play();
+
+                window.requestAnimationFrame(loop);
+
+                document.getElementById("webcam-container").appendChild(webcam.canvas);
+
+                startBtn.textContent = '분석 중...';
+                loading.textContent = '얼굴을 카메라에 맞춰주세요!';
+
+            } catch (error) {
+                console.error('Error:', error);
+                loading.textContent = '카메라 접근에 실패했습니다. 카메라 권한을 확인해주세요.';
+                startBtn.disabled = false;
+                startBtn.textContent = '다시 시도';
+            }
+        }
+
+        async function loop() {
+            webcam.update();
+            await predict();
+            window.requestAnimationFrame(loop);
+        }
+
+        async function predict() {
+            const prediction = await model.predict(webcam.canvas);
+
+            let dogProb = 0;
+            let catProb = 0;
+
+            for (let i = 0; i < maxPredictions; i++) {
+                const className = prediction[i].className.toLowerCase();
+                const probability = prediction[i].probability;
+
+                if (className.includes('dog') || className.includes('강아지')) {
+                    dogProb = probability;
+                } else if (className.includes('cat') || className.includes('고양이')) {
+                    catProb = probability;
+                }
+            }
+
+            // Update progress bars
+            document.getElementById('dog-bar').style.width = (dogProb * 100) + '%';
+            document.getElementById('cat-bar').style.width = (catProb * 100) + '%';
+
+            // Show result
+            const resultBox = document.getElementById('result-box');
+            const resultEmoji = document.getElementById('result-emoji');
+            const resultType = document.getElementById('result-type');
+            const resultPercentage = document.getElementById('result-percentage');
+            const resultDescription = document.getElementById('result-description');
+
+            const isDog = dogProb > catProb;
+            const result = isDog ? descriptions.dog : descriptions.cat;
+            const percentage = isDog ? dogProb : catProb;
+
+            resultEmoji.textContent = result.emoji;
+            resultType.textContent = result.name;
+            resultPercentage.textContent = `${(percentage * 100).toFixed(1)}% 일치`;
+            resultDescription.textContent = result.text;
+
+            resultBox.classList.add('show');
+        }
+    </script>
+</body>
+</html>
