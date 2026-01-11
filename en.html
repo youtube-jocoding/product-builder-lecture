@@ -4,58 +4,221 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-adsense-account" content="ca-pub-2962790403778987">
-    <meta name="description" content="Can't decide what to eat for dinner? Get instant menu recommendations with just one click. Try our AI animal personality test too!">
-    <meta name="keywords" content="dinner menu recommendation, what to eat, menu picker, animal personality test, AI test">
+    <meta name="description" content="Can't decide what to eat for dinner? Get instant menu recommendations with just one click. Explore Korean, Chinese, Japanese, and Western cuisines with healthy eating tips.">
+    <meta name="keywords" content="dinner menu recommendation, what to eat, menu picker, Korean food, Chinese food, Japanese food, Western food, healthy eating, food recommendation">
+    <meta name="author" content="Dinner Menu Recommendation">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://productbuilder-week1.vercel.app/en.html">
     <title>Dinner Menu Recommendation - What's for Dinner? | Free Menu Picker</title>
     <link rel="stylesheet" href="style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2962790403778987" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="theme-switch-wrapper">
-        <a href="about.html" class="lang-link">About</a>
-        <a href="animal-test.html" class="lang-link">Animal Test</a>
+        <a href="about-en.html" class="lang-link">About</a>
+        <a href="animal-test-en.html" class="lang-link">Animal Test</a>
+        <a href="food-tips-en.html" class="lang-link">Food Tips</a>
+        <a href="faq-en.html" class="lang-link">FAQ</a>
         <a href="index.html" class="lang-link">한국어</a>
         <button id="theme-toggle">Dark Mode</button>
     </div>
-    <div class="container">
-        <h1>What's for Dinner?</h1>
-        <p class="site-description">End your daily menu dilemma with just one click!<br>We recommend various cuisines from Korean, Chinese, Japanese to Western dishes.</p>
-        <div id="result-container" class="result-container"></div>
-        <button id="generate-btn">Recommend Menu</button>
+    <div class="container main-container">
+        <header class="hero-section">
+            <h1>What's for Dinner?</h1>
+            <p class="hero-subtitle">End your daily menu dilemma with just one click!</p>
+        </header>
 
-        <div class="contact-section">
+        <section class="intro-section content-section">
+            <h2>Welcome to Dinner Menu Recommendation</h2>
+            <p>One of the most challenging moments of each day is deciding "What should I eat for dinner?" In our busy lives, choosing a new menu every day consumes more mental energy than we realize. Our service solves this problem with just one click.</p>
+            <p>We recommend carefully selected menus from various categories including Korean, Chinese, Japanese, and Western cuisines, along with AI-generated images to help you choose a delicious and healthy dinner.</p>
+        </section>
+
+        <section class="recommendation-section content-section">
+            <h2>Get Your Menu Recommendation Now</h2>
+            <p>Click the button below to discover today's dinner menu randomly selected from various categories. You'll also get a delicious AI-generated food image with each recommendation.</p>
+            <div id="result-container" class="result-container"></div>
+            <button id="generate-btn">Recommend Menu</button>
+        </section>
+
+        <section class="cuisine-section content-section">
+            <h2>Explore Diverse Cuisines</h2>
+            <p>Our service categorizes and recommends various foods loved by people around the world. Learn about the characteristics and signature dishes of each cuisine category.</p>
+
+            <div class="cuisine-grid">
+                <article class="cuisine-card">
+                    <h3>Korean Cuisine</h3>
+                    <p>Korean traditional food is characterized by fermented foods and a diverse side dish culture. Rich in nutritious and delicious menus like Kimchi Jjigae, Doenjang Jjigae, Bibimbap, Bulgogi, and Samgyeopsal. Korean food is known to be healthy due to its abundance of vegetables and fermented foods.</p>
+                    <ul>
+                        <li><strong>Signature Dishes:</strong> Kimchi Jjigae, Doenjang Jjigae, Bibimbap</li>
+                        <li><strong>Features:</strong> Fermented foods, Various side dishes</li>
+                        <li><strong>Health Benefits:</strong> Rich in probiotics</li>
+                    </ul>
+                </article>
+
+                <article class="cuisine-card">
+                    <h3>Chinese Cuisine</h3>
+                    <p>Chinese cuisine has different characteristics depending on the region. Popular dishes include Jajangmyeon (black bean noodles), Jjamppong (spicy seafood noodles), and Tangsuyuk (sweet and sour pork). Wok cooking over high heat is characteristic, and various spices are used to create deep flavors.</p>
+                    <ul>
+                        <li><strong>Signature Dishes:</strong> Jajangmyeon, Jjamppong, Tangsuyuk</li>
+                        <li><strong>Features:</strong> Wok cooking, Various sauces</li>
+                        <li><strong>Health Benefits:</strong> Diverse vegetable use</li>
+                    </ul>
+                </article>
+
+                <article class="cuisine-card">
+                    <h3>Japanese Cuisine</h3>
+                    <p>Japanese cuisine is characterized by fresh ingredients and delicate cooking methods. Sushi, Ramen, Tonkatsu, and Udon are loved worldwide. Cooking methods that bring out the natural flavors of ingredients provide a light yet deep taste experience.</p>
+                    <ul>
+                        <li><strong>Signature Dishes:</strong> Sushi, Ramen, Tonkatsu, Udon</li>
+                        <li><strong>Features:</strong> Fresh ingredients, Light flavors</li>
+                        <li><strong>Health Benefits:</strong> Rich in seafood</li>
+                    </ul>
+                </article>
+
+                <article class="cuisine-card">
+                    <h3>Western Cuisine</h3>
+                    <p>Western cuisine includes a variety of menus such as steaks, pasta, pizza, and hamburgers. Rich flavors and satisfaction are its hallmarks, and it's popular for special dining occasions. Various sauces and cooking methods allow for personalized choices.</p>
+                    <ul>
+                        <li><strong>Signature Dishes:</strong> Steak, Pasta, Pizza</li>
+                        <li><strong>Features:</strong> Rich flavors, Various sauces</li>
+                        <li><strong>Health Benefits:</strong> High in protein</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="tips-section content-section">
+            <h2>Tips for Choosing Dinner</h2>
+            <p>Here are practical tips for a healthy and delicious dinner. Follow these guidelines to choose the perfect dinner menu for today.</p>
+
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <h4>Seasonal Foods</h4>
+                    <p>Foods made with seasonal ingredients are more nutritious and tastier. Choose spring vegetables in spring, cool noodles in summer, mushroom dishes in fall, and warm stews in winter.</p>
+                </div>
+                <div class="tip-item">
+                    <h4>Nutritional Balance</h4>
+                    <p>A balanced meal with carbohydrates, proteins, and fats is important. Enjoy rice or noodles with meat or fish and vegetables for a healthier meal.</p>
+                </div>
+                <div class="tip-item">
+                    <h4>Variety is Key</h4>
+                    <p>If you had Korean food for lunch, try a different cuisine for dinner. Eating various foods helps you get a wider range of nutrients.</p>
+                </div>
+                <div class="tip-item">
+                    <h4>Consider Cooking Time</h4>
+                    <p>On busy days, choose quick-to-prepare menus. On leisurely days, try more elaborate cooking. Meal kits are also a great option.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="seasonal-section content-section">
+            <h2>Seasonal Menu Recommendations</h2>
+            <p>Different foods suit different seasons. Check out our seasonal menu recommendations below.</p>
+
+            <div class="seasonal-grid">
+                <div class="season-card spring">
+                    <h4>Spring</h4>
+                    <p>Spring vegetable soup, Wild greens bibimbap, Octopus stir-fry, Fresh salads</p>
+                </div>
+                <div class="season-card summer">
+                    <h4>Summer</h4>
+                    <p>Cold noodles, Naengmyeon, Samgyetang, Cold soba, Fresh sashimi</p>
+                </div>
+                <div class="season-card fall">
+                    <h4>Fall</h4>
+                    <p>Grilled fish, Crab soup, Mushroom hot pot, Roasted shrimp, Pine mushroom rice</p>
+                </div>
+                <div class="season-card winter">
+                    <h4>Winter</h4>
+                    <p>Kimchi stew, Army stew, Soft tofu stew, Dumpling soup, Fish cake soup</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works content-section">
+            <h2>How to Use Our Service</h2>
+            <p>Using our service is very simple. Follow the steps below.</p>
+            <ol class="steps-list">
+                <li><strong>Click the Recommend Menu Button</strong> - Click the button above to instantly get today's dinner recommendation.</li>
+                <li><strong>View AI-Generated Image</strong> - Check out the delicious AI-generated food image along with your recommended menu.</li>
+                <li><strong>Choose Your Favorite</strong> - If you don't like the recommendation, click again to get a new suggestion.</li>
+                <li><strong>Enjoy Your Dinner</strong> - Enjoy a delicious dinner with your chosen menu!</li>
+            </ol>
+        </section>
+
+        <section class="features-section content-section">
+            <h2>Service Features</h2>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <h4>Free Service</h4>
+                    <p>Our menu recommendation service is completely free. Use it immediately without any signup or payment.</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Diverse Menus</h4>
+                    <p>We recommend over 24 different menus from various categories including Korean, Chinese, Japanese, and Western cuisines.</p>
+                </div>
+                <div class="feature-box">
+                    <h4>AI Images</h4>
+                    <p>We provide AI-generated images matching each menu so you can visually preview your meal.</p>
+                </div>
+                <div class="feature-box">
+                    <h4>Dark Mode</h4>
+                    <p>We support dark mode to reduce eye strain. Use comfortably even at night.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section content-section">
+            <h2>Try Our Other Services</h2>
+            <p>In addition to dinner recommendations, we offer fun services. Discover your animal personality with our AI Animal Personality Test!</p>
+            <div class="cta-buttons">
+                <a href="animal-test-en.html" class="cta-btn">Take Animal Test</a>
+                <a href="food-tips-en.html" class="cta-btn secondary">View Food Tips</a>
+            </div>
+        </section>
+
+        <section class="contact-section">
             <hr>
             <h3>Partnership Inquiry</h3>
+            <p>We welcome business inquiries for advertising, sponsorship, and partnerships. Please contact us through the form below and we'll respond promptly.</p>
             <form action="https://formspree.io/f/xeeejzvo" method="POST">
                 <input type="email" name="email" placeholder="Your Email" required>
                 <textarea name="message" placeholder="Your Message" required></textarea>
                 <button type="submit" id="submit-btn">Send</button>
             </form>
-        </div>
+        </section>
 
-        <div id="disqus_thread" style="margin-top: 40px;"></div>
-        <script>
-            var disqus_config = function () {
-                this.page.url = window.location.href;
-                this.page.identifier = 'index-en';
-            };
-            (function() {
-                var d = document, s = d.createElement('script');
-                s.src = 'https://productbuilder.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <section class="comments-section">
+            <h3>Comments & Reviews</h3>
+            <p>Please leave your opinions or reviews about our menu recommendation service. Your feedback helps us improve our service.</p>
+            <div id="disqus_thread" style="margin-top: 20px;"></div>
+            <script>
+                var disqus_config = function () {
+                    this.page.url = window.location.href;
+                    this.page.identifier = 'index-en';
+                };
+                (function() {
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://productbuilder.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
 
         <footer class="site-footer">
             <div class="footer-links">
-                <a href="about.html">About</a>
-                <a href="animal-test.html">Animal Test</a>
-                <a href="privacy.html">Privacy Policy</a>
+                <a href="about-en.html">About</a>
+                <a href="animal-test-en.html">Animal Test</a>
+                <a href="food-tips-en.html">Food Tips</a>
+                <a href="faq-en.html">FAQ</a>
+                <a href="privacy-en.html">Privacy Policy</a>
                 <a href="index.html">한국어</a>
             </div>
             <p class="footer-copyright">&copy; 2025 Dinner Menu Recommendation. All rights reserved.</p>
+            <p class="footer-info">This site provides useful dinner menu recommendations and food-related information for users.</p>
         </footer>
     </div>
     <script src="main.js"></script>
