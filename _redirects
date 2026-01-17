@@ -1,0 +1,12 @@
+# URL Canonicalization - redirect www to non-www
+https://www.jocoding.cc/* https://jocoding.cc/:splat 301
+
+# Redirect index.html to root
+/index.html / 301
+
+# Handle trailing slashes
+/about/ /about.html 301
+/faq/ /faq.html 301
+/food-tips/ /food-tips.html 301
+/animal-test/ /animal-test.html 301
+/privacy/ /privacy.html 301
