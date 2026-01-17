@@ -1,0 +1,27 @@
+# robots.txt for 저녁 메뉴 추천
+# https://jocoding.cc/
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://jocoding.cc/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Naver
+User-agent: Yeti
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# Daum
+User-agent: Daumoa
+Allow: /
