@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="plateGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B"/>
+      <stop offset="100%" style="stop-color:#FF8E53"/>
+    </linearGradient>
+  </defs>
+  <!-- Plate circle -->
+  <circle cx="50" cy="50" r="45" fill="url(#plateGrad)"/>
+  <!-- Inner plate ring -->
+  <circle cx="50" cy="50" r="35" fill="none" stroke="#fff" stroke-width="2" opacity="0.3"/>
+  <!-- Fork -->
+  <g fill="#fff">
+    <rect x="28" y="30" width="3" height="25" rx="1"/>
+    <rect x="33" y="30" width="3" height="25" rx="1"/>
+    <rect x="38" y="30" width="3" height="25" rx="1"/>
+    <rect x="30" y="52" width="9" height="18" rx="2"/>
+  </g>
+  <!-- Spoon -->
+  <g fill="#fff">
+    <ellipse cx="65" cy="38" rx="8" ry="10"/>
+    <rect x="62" y="45" width="6" height="25" rx="2"/>
+  </g>
+</svg>
